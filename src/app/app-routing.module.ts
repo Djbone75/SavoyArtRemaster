@@ -3,8 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
-  { path: 'homepage', component: HomepageComponent },
-  { path: '', redirectTo: '/homepage', pathMatch: 'full' },
+  { path: '', component: HomepageComponent },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({

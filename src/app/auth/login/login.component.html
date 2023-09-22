@@ -1,0 +1,46 @@
+<mat-card>
+  <p>Login</p>
+  <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        name="email"
+        ngModel
+        type="email"
+        placeholder="E-Mail"
+        #emailInput="ngModel"
+        required
+        email
+      />
+      <mat-error *ngIf="emailInput.invalid && emailInput.touched"
+        >Merci d'entrer un email valide</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        name="password"
+        ngModel
+        matInput
+        placeholder="Password"
+        #passwordInput="ngModel"
+        required
+        minlength="4"
+        maxlength="20"
+      />
+      <mat-error *ngIf="passwordInput.invalid && passwordInput.touched"
+        >Merci d'entrer un mot de passe entre et 20 lettres.</mat-error
+      >
+    </mat-form-field>
+    <div class="button--centered">
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
+    </div>
+  </form></mat-card
+>

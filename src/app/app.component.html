@@ -1,2 +1,7 @@
-<app-header></app-header>
+<app-header
+  [user]="user"
+  [userIsAuthenticated]="userIsAuthenticated"
+  (logout)="onLogout()"
+></app-header>
+
 <router-outlet></router-outlet>

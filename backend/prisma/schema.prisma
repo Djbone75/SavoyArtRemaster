@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  email String @unique @db.VarChar(50)
+  password  String 
+  firstname String? @db.VarChar(50)
+  lastname String? @db.VarChar(50)
+  averageGuests Int?
+  allergies String[]
+  role    Role?     @default(USER) 
+  reservations Reservation[]  
+}
+model Reservation {
+  id        Int   @id @default(autoincrement())
+  createdAt DateTime @default(now()) 
+  userName String 
+  totalGuests Int @default(1)
+  day    DateTime
+  hour DateTime @db.Time()
+  userId   String?
+  allergies String[]
+  user     User?       @relation(fields: [userId], references: [id])
+  
+}
+
+model Horaires {
+  id        Int   @id 
+  name String @unique
+  dayStartAM DateTime @db.Time() @default("1970-01-01T11:00:00Z")
+  dayEndAM DateTime @db.Time() @default("1970-01-01T14:00:00Z")
+  dayStartPM DateTime @db.Time() @default("1970-01-01T18:00:00Z")
+  dayEndPM DateTime @db.Time() @default("1970-01-01T22:00:00Z")
+  
+}
+model Allergies {
+  id Int @id @default(autoincrement())
+  name String
+  
+  
+}
+model Gallery {
+  id        Int   @id @default(autoincrement())
+  title String @db.VarChar(25)
+  content String? @db.VarChar(100)
+  path String 
+  createdAt DateTime @default(now()) 
+  
+}
+model Menu {
+  id        Int   @id @default(autoincrement())
+  title String @db.VarChar(25)
+  content String? @db.VarChar(100)
+  createdAt DateTime @default(now()) 
+  
+}
+enum Role {
+  USER
+  ADMIN
+  
+}
