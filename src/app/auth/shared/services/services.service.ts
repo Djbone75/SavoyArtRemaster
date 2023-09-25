@@ -1,49 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+
 import { user } from 'src/models/user.model';
 import { AuthData } from 'src/models/auth-data.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
-import { distinctUntilChanged } from 'rxjs';
+
+import { Store } from 'src/store';
 
 const BACKEND_URL = environment.apiUrl + '/user/';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private isAuthenticated = false;
   private token?: string;
 
   private userData?: string;
   private user?: user | null;
 
-  private authStatusListener = new Subject<boolean>();
-  private userListener = new Subject<user | null>();
-
   constructor(
     private http: HttpClient,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store
   ) {}
 
   getToken() {
     return this.token;
-  }
-
-  getIsAuth() {
-    return this.isAuthenticated;
-  }
-
-  getUser() {
-    return this.user;
-  }
-
-  getAuthStatusListener() {
-    return this.authStatusListener.asObservable();
-  }
-
-  getUserListener() {
-    return this.userListener.asObservable().pipe(distinctUntilChanged());
   }
 
   createUser(email: string, password: string) {
@@ -58,7 +40,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
-    console.log(BACKEND_URL + 'login', authData);
+
     try {
       this.http
         .post<{ token: string; user: user }>(BACKEND_URL + 'login', authData)
@@ -69,9 +51,8 @@ export class AuthService {
           this.user = user;
 
           if (token) {
-            this.isAuthenticated = true;
-            this.authStatusListener.next(true);
-            this.userListener.next(this.user);
+            this.store.set('isAuthenticated', true);
+            this.store.set('user', user);
 
             this.saveAuthData(token, user);
             this.router.navigate(['/']);
@@ -90,16 +71,16 @@ export class AuthService {
     }
   }
 
-  retrieveUser() {
-    return this.http.get<user>(BACKEND_URL + '/user');
-  }
+  // retrieveUser() {
+  //   return this.http.get<user>(BACKEND_URL + '/user');
+  // }
 
   logout() {
     this.token = '';
-    this.isAuthenticated = false;
-    this.authStatusListener.next(false);
-    this.user = null;
-    this.userListener.next(null);
+
+    this.store.set('isAuthenticated', false);
+
+    this.store.set('user', null);
     this.clearAuthData();
     this.router.navigate(['/']);
   }
@@ -116,9 +97,8 @@ export class AuthService {
 
     this.user = JSON.parse(this.userData);
 
-    this.isAuthenticated = true;
-    this.authStatusListener.next(true);
-    this.userListener.next(this.user || null);
+    this.store.set('isAuthenticated', true);
+    this.store.set('user', this.user || null);
   }
 
   private saveAuthData(token: string, user: user) {
@@ -150,7 +130,7 @@ export class AuthService {
       .put<{ user: user }>(BACKEND_URL + '/user', updateUser)
       .subscribe((data) => {
         this.user = data.user;
-        this.userListener.next(data.user);
+        this.store.set('user', this.user);
       });
   }
 }

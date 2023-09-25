@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth/shared/services/services.service';
 import { SharedModule } from './auth/shared/shared.module';
 
+import { Store } from '../store';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -33,7 +35,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatBadgeModule,
     MatMenuModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, Store],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
