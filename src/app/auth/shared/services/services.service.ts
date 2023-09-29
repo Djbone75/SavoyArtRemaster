@@ -24,10 +24,6 @@ export class AuthService {
     private store: Store
   ) {}
 
-  getToken() {
-    return this.token;
-  }
-
   createUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
     this.http.post(BACKEND_URL + '/register', authData).subscribe(() => {
@@ -53,6 +49,7 @@ export class AuthService {
           if (token) {
             this.store.set('isAuthenticated', true);
             this.store.set('user', user);
+            this.store.set('token', token);
 
             this.saveAuthData(token, user);
             this.router.navigate(['/']);
@@ -76,11 +73,12 @@ export class AuthService {
   // }
 
   logout() {
-    this.token = '';
+    this.store.set('token', null);
 
     this.store.set('isAuthenticated', false);
 
     this.store.set('user', null);
+
     this.clearAuthData();
     this.router.navigate(['/']);
   }
@@ -98,7 +96,8 @@ export class AuthService {
     this.user = JSON.parse(this.userData);
 
     this.store.set('isAuthenticated', true);
-    this.store.set('user', this.user || null);
+    this.store.set('user', this.user);
+    this.store.set('token', this.token);
   }
 
   private saveAuthData(token: string, user: user) {

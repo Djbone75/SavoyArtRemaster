@@ -1,0 +1,25 @@
+<div class="container" *ngIf="gallery.length >= 3">
+  <div *ngFor="let gal of [1, 2, 3]">
+    <div class="gallery">
+      <div
+        class="gallery__image gallery__image--front"
+        [style.background-image]="
+          'url(' + gallery[gallery.length - gal].path + ')'
+        "
+      >
+        <div class="gallery__heading--front">
+          {{ gallery[gallery.length - gal].title }}
+        </div>
+      </div>
+      <div class="gallery__image gallery__image--back">
+        <div class="gallery__heading">
+          {{ gallery[gallery.length - gal].title }}
+        </div>
+
+        <div class="gallery__content">
+          {{ gallery[gallery.length - gal].content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

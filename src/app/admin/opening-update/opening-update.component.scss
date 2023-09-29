@@ -1,0 +1,41 @@
+@import "../../../styles/variables.scss";
+.card__horaires {
+  max-width: 34rem;
+}
+.horaires {
+  font-size: small;
+  font-family: $police-tertiary;
+  line-height: normal;
+}
+.horaires-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 2rem;
+  margin: auto;
+  cursor: pointer;
+
+  &:hover {
+    background-color: aliceblue;
+  }
+}
+mat-form-field {
+  margin-left: 1rem;
+  width: 5rem;
+}
+.active {
+  background-color: red;
+  &:hover {
+    background-color: red;
+  }
+}
+
+.mat-card-header {
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}

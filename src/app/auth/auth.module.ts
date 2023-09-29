@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 
+import { UserGuard } from './user.guard';
+
 export const ROUTES: Routes = [
   {
     path: '',
@@ -21,6 +23,14 @@ export const ROUTES: Routes = [
         path: 'register',
         loadChildren: () =>
           import('./register/register.module').then((m) => m.RegisterModule),
+      },
+      {
+        path: 'updateUser',
+        canActivate: [UserGuard],
+        loadChildren: () =>
+          import('./user-update/user-update.module').then(
+            (m) => m.UserUpdateModule
+          ),
       },
     ],
   },

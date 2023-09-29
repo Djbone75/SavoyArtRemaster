@@ -21,5 +21,57 @@
     <li *ngIf="userIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>
     </li>
+    <li *ngIf="user && user.role == 'ADMIN'">
+      <button mat-button [matMenuTriggerFor]="menu">Administration</button>
+
+      <mat-menu #menu="matMenu">
+        <a
+          mat-menu-item
+          routerLink="./admin/updateOpenings"
+          routerLinkActive="mat-accent"
+        >
+          Horaires
+        </a>
+        <a
+          mat-menu-item
+          routerLink="/admin/updateGallery"
+          routerLinkActive="mat-accent"
+        >
+          Update Gallery
+        </a>
+        <a
+          mat-menu-item
+          routerLink="/reservationList"
+          routerLinkActive="mat-accent"
+        >
+          reservations
+        </a>
+      </mat-menu>
+    </li>
+    <li class="button__icon">
+      <mat-icon
+        mat-button
+        *ngIf="user && user.role == 'USER'"
+        [matBadge]="userIsAuthenticated && user.firstname == null ? '1' : ''"
+        matBadgeColor="warn"
+        matBadgeOverlap="true"
+        [matMenuTriggerFor]="userMenu"
+        >how_to_reg</mat-icon
+      >
+      <mat-icon *ngIf="!user">perm_identity</mat-icon>
+      <mat-icon
+        mat-button
+        *ngIf="user && user.role == 'ADMIN'"
+        [matBadge]="userIsAuthenticated && user.firstname == null ? '1' : ''"
+        matBadgeColor="warn"
+        matBadgeOverlap="true"
+        [matMenuTriggerFor]="userMenu"
+        >admin_panel_settings</mat-icon
+      ><mat-menu #userMenu="matMenu">
+        <button mat-menu-item routerLink="./auth/updateUser">
+          mettez a jour vos informations
+        </button>
+      </mat-menu>
+    </li>
   </ul>
 </mat-toolbar>

@@ -1,16 +1,28 @@
 import { Observable, BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
 
 import { user } from './models/user.model';
+import { opening } from './models/openings.model';
+import { Gallery } from './models/gallery.model';
+import { reservation } from './models/reservation.model';
 
+import { openingsDefault } from './models/openings.model';
 export interface State {
   user: user | null;
   isAuthenticated: boolean;
+  token: string | null;
+  openings: opening[];
+  gallery: Gallery[];
+  reservations: reservation[];
   [key: string]: any;
 }
 
 const state: State = {
   user: null,
   isAuthenticated: false,
+  token: null,
+  openings: openingsDefault,
+  reservations: [],
+  gallery: [],
 };
 
 export class Store {

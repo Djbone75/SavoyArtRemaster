@@ -7,7 +7,9 @@ import { AuthService } from '../shared/services/services.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService) {
+    console.log('login component');
+  }
   onLogin(form: NgForm) {
     if (form.invalid) {
       console.log('invalid');
