@@ -4,7 +4,11 @@
       <span class="logo__letter">Q</span>
     </a>
     <li>
-      <button mat-button (click)="onClick()" routerLinkActive="mat-accent">
+      <button
+        mat-button
+        routerLink="./reservation"
+        routerLinkActive="mat-accent"
+      >
         Reservez
       </button>
     </li>
@@ -41,7 +45,7 @@
         </a>
         <a
           mat-menu-item
-          routerLink="/reservationList"
+          routerLink="/admin/reservationView"
           routerLinkActive="mat-accent"
         >
           reservations

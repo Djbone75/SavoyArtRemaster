@@ -1,0 +1,22 @@
+mat-button-toggle {
+  display: flex;
+  min-height: 2.3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-dialog-content {
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-modal {
+  position: relative;
+  right: -1.5rem;
+  top: -1.5rem;
+  border: 1px solid black;
+}
+.form__reservation {
+  text-align: center;
+}

@@ -29,6 +29,13 @@ export const ROUTES: Routes = [
             (m) => m.GalleryUpdateModule
           ),
       },
+      {
+        path: 'reservationView',
+        loadChildren: () =>
+          import('./reservation-view/reservation-view.module').then(
+            (m) => m.ReservationViewModule
+          ),
+      },
     ],
   },
 ];

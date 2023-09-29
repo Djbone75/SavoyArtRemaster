@@ -14,6 +14,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  {
+    path: 'reservation',
+
+    loadChildren: () =>
+      import('./reservation/reservation.module').then(
+        (m) => m.ReservationModule
+      ),
+  },
 ];
 
 @NgModule({

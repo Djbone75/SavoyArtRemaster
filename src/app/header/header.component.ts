@@ -4,6 +4,8 @@ import { user } from '../../models/user.model';
 
 import { OnInit } from '@angular/core';
 
+import { ReservationComponent } from '../reservation/reservation.component';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -27,5 +29,4 @@ export class HeaderComponent implements OnInit {
     console.log('logout 1');
     this.logout.emit();
   }
-  onClick(): void {}
 }
