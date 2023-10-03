@@ -15,13 +15,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
 
-export const routes: Routes = [{ path: '', component: ReservationComponent }];
-
 @NgModule({
   declarations: [ReservationComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,

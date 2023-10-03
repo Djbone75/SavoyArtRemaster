@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { user } from '../../models/user.model';
 
 import { OnInit } from '@angular/core';
-
+import { MatDialog } from '@angular/material/dialog';
 import { ReservationComponent } from '../reservation/reservation.component';
 
 @Component({
@@ -20,13 +20,18 @@ export class HeaderComponent implements OnInit {
   logout = new EventEmitter<any>();
 
   ngOnInit(): void {}
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnDestroy(): void {
     this.onLogout();
   }
   onLogout() {
-    console.log('logout 1');
     this.logout.emit();
+  }
+  openDialog() {
+    this.dialog.open(ReservationComponent, {
+      minHeight: '500px',
+      minWidth: '500px',
+    });
   }
 }

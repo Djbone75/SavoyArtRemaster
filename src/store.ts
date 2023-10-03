@@ -6,6 +6,8 @@ import { Gallery } from './models/gallery.model';
 import { reservation } from './models/reservation.model';
 
 import { openingsDefault } from './models/openings.model';
+import { galleryDefault } from './models/gallery.model';
+
 export interface State {
   user: user | null;
   isAuthenticated: boolean;
@@ -21,8 +23,8 @@ const state: State = {
   isAuthenticated: false,
   token: null,
   openings: openingsDefault,
+  gallery: galleryDefault,
   reservations: [],
-  gallery: [],
 };
 
 export class Store {

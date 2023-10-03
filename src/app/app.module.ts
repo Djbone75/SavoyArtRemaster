@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReservationModule } from './reservation/reservation.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
 import { OpeningsComponent } from './openings/openings.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { GalleryComponent } from './gallery/gallery.component';
     MatIconModule,
     MatBadgeModule,
     MatMenuModule,
+    MatDialogModule,
+    ReservationModule,
   ],
   providers: [
     {

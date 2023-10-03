@@ -37,10 +37,19 @@ button {
 .button__form {
   background-color: $color-primary-light;
   transition: 0.3s ease-in-out;
+  min-height: 2rem;
+  margin: 1rem;
+
   &:hover {
     transform: scale(1.1);
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -12,7 +12,7 @@ export class OpeningsComponent {
   OpeningSub$ = this.store
     .select<opening[]>('openings')
     .subscribe((openings) => {
-      console.log(openings);
+      
       this.updatedOpenings = openings;
     });
 

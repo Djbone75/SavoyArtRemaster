@@ -10,11 +10,10 @@
       <span
         *ngFor="let dayz of updatedOpening; let i = index"
         (click)="selectItem(dayz)"
-        [class.active]="selectedDay == dayz"
       >
         <div
           class="horaires-item"
-          [class.active]="dayz?.name == selectedDay?.name"
+          [ngClass]="{ active: dayz?.name === selectedDay?.name }"
         >
           {{ dayz.name | uppercase }}
 

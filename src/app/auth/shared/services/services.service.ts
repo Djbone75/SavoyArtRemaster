@@ -68,10 +68,6 @@ export class AuthService {
     }
   }
 
-  // retrieveUser() {
-  //   return this.http.get<user>(BACKEND_URL + '/user');
-  // }
-
   logout() {
     this.store.set('token', null);
 
@@ -100,16 +96,6 @@ export class AuthService {
     this.store.set('token', this.token);
   }
 
-  private saveAuthData(token: string, user: user) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  private clearAuthData() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-  }
-
   private getAuthData() {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
@@ -123,7 +109,15 @@ export class AuthService {
       userData,
     };
   }
+  private saveAuthData(token: string, user: user) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
+  private clearAuthData() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
   updateUser(updateUser: user) {
     this.http
       .put<{ user: user }>(BACKEND_URL + '/user', updateUser)

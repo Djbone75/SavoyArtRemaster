@@ -43,7 +43,6 @@ export class OpeningUpdateComponent {
     this.scheduleForm?.form.patchValue({
       id: null,
       dayName: item.name,
-      openOrClose: 'open',
       openHourAM: new Date(item.dayStartAM).getHours(),
       openMinuteAM: new Date(item.dayStartAM).getMinutes(),
       closeHourAM: new Date(item.dayEndAM).getHours(),

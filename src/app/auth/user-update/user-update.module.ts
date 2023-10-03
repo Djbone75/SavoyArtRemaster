@@ -14,7 +14,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { UserGuard } from '../user.guard';
 
-export const routes: Routes = [{ path: '', component: UserUpdateComponent }];
+export const routes: Routes = [
+  { path: '', canActivate: [UserGuard], component: UserUpdateComponent },
+];
 
 @NgModule({
   declarations: [UserUpdateComponent],

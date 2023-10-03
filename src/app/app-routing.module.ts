@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AdminGuard } from './auth/admin.guard';
+import { ReservationComponent } from './reservation/reservation.component';
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   {
@@ -16,11 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'reservation',
-
-    loadChildren: () =>
-      import('./reservation/reservation.module').then(
-        (m) => m.ReservationModule
-      ),
+    component: ReservationComponent,
   },
 ];
 

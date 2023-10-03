@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 
 import { UserGuard } from './user.guard';
-import { AdminGuard } from './admin.guard';
+
 
 export const ROUTES: Routes = [
   {

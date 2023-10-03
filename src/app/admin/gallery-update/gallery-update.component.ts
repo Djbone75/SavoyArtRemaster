@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GalleryService } from 'src/app/gallery/gallery.service';
 import { Gallery } from 'src/models/gallery.model';
-import { Subscription } from 'rxjs';
+
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from 'src/store';
@@ -58,11 +58,12 @@ export class GalleryUpdateComponent implements OnInit {
     if (this.file) {
       this.fileName = this.file.name;
 
-      this.form.get('image')?.updateValueAndValidity();
       const reader = new FileReader();
       reader.onload = (e) => {
         this.imagePreview = reader.result as string;
+
         let mime = this.imagePreview.split(';')[0].split(':')[1];
+        
         if (
           [
             'image/jpeg',
@@ -76,6 +77,7 @@ export class GalleryUpdateComponent implements OnInit {
           return alert("ce type de fichier n'est pas autorisé");
         }
       };
+      
       reader.readAsDataURL(this.file);
     }
   }
