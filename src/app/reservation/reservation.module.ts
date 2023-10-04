@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RouterModule, Routes } from '@angular/router';
-
 import { ReservationComponent } from './reservation.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';

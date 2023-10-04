@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form__reservation">
-  <div>
+  <div class="centered">
     <mat-form-field>
       <mat-label>nom de Famille</mat-label>
       <input matInput name="userName" [ngModel]="currentUser?.firstname" />
@@ -16,8 +16,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <br />
+  </div>
+  <div>
     <mat-form-field appearance="outline">
       <input
         matInput

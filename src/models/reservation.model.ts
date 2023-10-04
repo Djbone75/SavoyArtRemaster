@@ -3,5 +3,5 @@ export interface reservation {
   hour: Date;
   userName?: string;
   totalGuests: number;
-  allergies?: string[];
+  allergy?: string[];
 }

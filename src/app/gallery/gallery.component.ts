@@ -16,6 +16,5 @@ export class GalleryComponent implements OnInit {
   gallery: Gallery[] = [];
   GallerySub$ = this.store.select<Gallery[]>('gallery').subscribe((gallery) => {
     this.gallery = gallery;
-    console.log(this.gallery);
   });
 }

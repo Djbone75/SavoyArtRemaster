@@ -22,12 +22,11 @@
       <div class="field__image">
         Ajoutez une image {{ fileName }}
         <button
-          mat-fab
-          color="primary"
-          aria-label="Example icon button with a bookmark icon"
+          mat-icon-button
+          matTooltip="Basic"
           (click)="fileSelector.click()"
         >
-          <mat-icon class="icon__upload">file_present</mat-icon>
+          <mat-icon color="basic" class="icon__upload">file_present</mat-icon>
         </button>
 
         <br />
@@ -78,9 +77,8 @@
 
         <div class="element">
           <button
-            mat-fab
-            color="primary"
-            aria-label="Example icon button with a delete icon"
+            mat-icon-button
+            matTooltip="Basic"
             (click)="deleteHandle(gallery.id)"
           >
             <mat-icon class="icon__trash">delete</mat-icon>

@@ -72,6 +72,7 @@ export class ReservationComponent {
     } else {
       this.customReservationAM = 20;
     }
+
     let reservPM = this.reservations
       .filter((data) => {
         return new Date(data.day).getDate() === customDate.getDate();
@@ -107,12 +108,11 @@ export class ReservationComponent {
 
   onSubmit(form: NgForm) {
     const newReservation = {
-      name: form.value.name || 'aucun nom',
+      userName: form.value.userName || 'aucun nom',
       day: form.value.day || new Date(),
       hour: form.value.hour || new Date(),
       totalGuests: form.value.totalGuests || 1,
-      allergies: form.value.allergies || 'aucune allergie',
-      username: form.value.username || 'aucun nom',
+      allergies: form.value.allergy || [],
     };
 
     newReservation.hour = new Date(
@@ -122,13 +122,16 @@ export class ReservationComponent {
       form.value.hour,
       form.value.minute
     );
+
     if (this.currentUser) {
       this.reservationService.postReservation(newReservation);
 
       this.snackBar.open('reservation effectuée', '', { duration: 1000 });
+      this.dialog.closeAll();
     } else {
       this.reservationService.postUserReservation(newReservation);
       this.snackBar.open('reservation effectuée', '', { duration: 1000 });
+      this.dialog.closeAll();
     }
     this.reservations = [...this.reservations, newReservation];
     this.store.set('reservations', this.reservations);

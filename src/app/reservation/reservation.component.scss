@@ -31,3 +31,8 @@ mat-dialog-content {
   min-height: 2rem;
   margin-top: 1rem;
 }
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

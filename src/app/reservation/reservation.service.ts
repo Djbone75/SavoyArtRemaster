@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 import { Store } from 'src/store';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +9,8 @@ import { reservation } from 'src/models/reservation.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ReservationService {
+export class ReservationService implements OnInit {
+  ngOnInit(): void {}
   currentUser = this.store.value.user;
   constructor(private store: Store, private http: HttpClient) {
     this.getReservation();
@@ -31,14 +32,14 @@ export class ReservationService {
         reservation
       )
       .subscribe((response) => {
-        console.log('reservation effectuée : ', response);
+        // console.log('reservation effectuée : ', response);
       });
   }
   postReservation(reservation: reservation) {
     this.http
       .post<reservation>(environment.apiUrl + '/reservations/', reservation)
       .subscribe((response) => {
-        console.log('reservation effectuée : ', response);
+        // console.log('reservation effectuée : ', response);
       });
   }
 }

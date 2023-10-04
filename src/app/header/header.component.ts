@@ -29,9 +29,6 @@ export class HeaderComponent implements OnInit {
     this.logout.emit();
   }
   openDialog() {
-    this.dialog.open(ReservationComponent, {
-      minHeight: '500px',
-      minWidth: '500px',
-    });
+    this.dialog.open(ReservationComponent, {});
   }
 }

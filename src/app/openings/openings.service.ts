@@ -19,7 +19,7 @@ export class OpeningsService {
     private http: HttpClient,
     private router: Router
   ) {
-    this.getSchedule();
+    this.getOpening();
   }
   updatedOpenings: opening[] = [];
   OpeningSub$ = this.store
@@ -28,7 +28,7 @@ export class OpeningsService {
       this.updatedOpenings = openings;
     });
 
-  getSchedule() {
+  getOpening() {
     this.http
       .get<{ schedule: any }>(BACKEND_URL)
       .pipe(
